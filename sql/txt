@@ -1,0 +1,100 @@
+create table cust1(
+name_ varchar(15),
+surname varchar(15),
+age int,
+birthdate date,
+cust_id int Primary Key,
+cust_address varchar(25),
+gender varchar(10),
+status varchar(10)
+);
+
+
+insert into cust1
+values 
+ ('Farid', 'Muradov', 19, to_date('18-02-2003','dd-mm-yyyy'), '001', 'Z.Bagirov st.5', 'man', 'single');
+ insert into cust1
+values 
+ ('Nurana', 'Mammedov', 23, to_date('05-08-1999','dd-mm-yyyy'), '002', 'Z.Bagirov st.8', 'woman', 'married');
+ insert into cust1
+values 
+ ('Sabina', 'Alekbarov', 18, to_date('23-12-2004','dd-mm-yyyy'), '003', 'Z.Bagirov st.10', 'woman', 'single');
+ insert into cust1
+values 
+ ('Ali', 'Aliyev', 32, to_date('16-05-1990','dd-mm-yyyy'), '004', 'Z.Bagirov st.7', 'man', 'married');
+ insert into cust1
+values 
+ ('Narmin', 'Soltanova', 26, to_date('07-06-1996','dd-mm-yyyy'), '005', 'Z.Bagirov st.3', 'woman', 'single');
+insert into cust1
+values 
+ ('Fuad', 'Alizadeh', 22, to_date('27-06-2000','dd-mm-yyyy'), '006', 'Z.Bagirov st.8', 'man', 'married');
+
+select*from cust1;
+
+select name_, surname, age, to_char(birthdate, 'dd-mm-yyyy'), cust_id, cust_address, gender, status from cust1;
+
+alter table cust1 rename to Custs;
+select*from Custs;
+
+alter table Custs rename column name_ to cust_name;
+select*from Custs;
+
+alter table Custs add password_ number(30);
+select*from Custs;
+
+alter table Custs modify password_ number(35);
+select*from Custs;
+
+alter table Custs drop column password_;
+select*from Custs;
+
+insert into Custs
+values 
+ ('Leman', 'Mirzeyev', 25, to_date('20-09-1997','dd-mm-yyyy'), '007', 'Z.Bagirov st.9', 'woman', 'single');
+
+select cust_name, surname, age, to_char(birthdate, 'dd-mm-yyyy'), cust_id, cust_address, gender, status from Custs;
+
+alter table Custs rename column status to family_status;
+select*from Custs;
+
+alter table Custs rename column surname to cust_surname;
+select*from Custs;
+
+select cust_name || ' ' || cust_surname as Customer from Custs;
+ 
+select to_char ( birthdate,'dd-mm-yyyy') from Custs;
+
+
+insert into Custs
+values 
+ ('Sevda', 'Mammedova', 18, to_date('07-11-2003','dd-mm-yyyy'), '008', 'Z.Bagirov st.12', 'woman', 'single');
+ insert into Custs
+values 
+ ('Surxay', 'Mammadzadeh', 27, to_date('13-02-1995','dd-mm-yyyy'), '009', 'Z.Bagirov st.23', 'man', 'single');
+ insert into Custs
+values 
+ ('Togrul', 'Aslanov', 42, to_date('26-04-1980','dd-mm-yyyy'), '010', 'Z.Bagirov st.67', 'man', 'married');
+
+
+select cust_address|| ' ' || cust_homenumber as Customer from Custs;
+
+alter table Custs drop column cust_homenumber;
+select*from Custs;
+
+select cust_id|| ' ' ||cust_name|| ' ' ||cust_surname|| ' ' ||gender|| ' ' ||age as "Basic information" from Custs;
+
+alter table Custs modify cust_address varchar (40);
+select*from Custs;
+
+alter table Custs rename to Cust_personality;
+select*from Cust_personality;
+
+alter table Cust_personality drop column family_status;
+select*from Cust_personality;
+
+select cust_name || ' ' || to_char(birthdate, 'dd-mm-yyyy') as Cust_birth from  Cust_personality;
+
+alter table Cust_personality rename column birthdate to cust_birth;
+select*from Cust_personality;
+ 
+select cust_name, cust_surname, age, to_char(cust_birth, 'dd-mm-yyyy') as cust_birth, cust_id, cust_address, gender from Cust_personality;
