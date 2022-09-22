@@ -1,0 +1,112 @@
+create table emp(
+emp_name varchar(15),
+age int,
+birthdate date,
+emp_id int Primary Key,
+status varchar(10)
+);
+insert into emp
+values 
+ ('Farhad', 19, to_date('19-05-2003','dd-mm-yyyy'), '001', 'single');
+insert into emp
+values 
+ ('Gulnar', 32, to_date('27-06-1990','dd-mm-yyyy'), '002', 'married');
+ insert into emp
+values 
+ ('Sevil', 18, to_date('15-03-2004','dd-mm-yyyy'), '003', 'single');
+ select*from emp;
+ 
+ alter table emp
+ drop PRIMARY KEY;
+ 
+ alter table emp
+ add constraint pk_emp PRIMARY KEY (emp_id);
+ 
+ alter table emp
+ add emp_salary number(3);
+ 
+ alter table emp
+ add constraint check_higher_emp_salary CHECK (emp_salary>0);
+ 
+ alter table emp
+ drop constraint check_higher_emp_salary;
+ select*from user_constraints where constraint_name='check_higher_emp_salary';
+ 
+create table customers11(
+cust_name varchar(15),
+age int,
+birthdate date,
+cust_id int ,
+status varchar(10),
+CONSTRAINT pk_customers11 PRIMARY KEY (cust_id)
+);
+alter table customers11
+drop constraint pk_customers11;
+
+create table teachers(
+teacher_name nvarchar2(10),
+teacher_age number(2),
+CONSTRAINT unique_teacher_information UNIQUE(teacher_name, teacher_age)
+);
+ 
+ create table hotels(
+ hotel_name varchar(10) NOT NULL,
+ hotel_id int NOT NULL UNIQUE,
+ hotel_address varchar(20) NOT NULL
+ );
+ insert into hotels
+values 
+ ('STAR', 1, 'ST.12');
+  insert into hotels
+values 
+ ('MOON', 2, 'ST.13');
+ select*from hotels;
+ 
+ alter table hotels
+ add hotel_email varchar2(100);
+ alter table hotels
+ add constraint unique_hotel_email UNIQUE (hotel_email);
+ 
+ create table markets(
+ market_id number,
+ market_name varchar2(15) NOT NULL,
+ market_address varchar2(20) NOT NULL,
+ CONSTRAINT pk_market_id PRIMARY KEY(market_id)
+ );
+  insert into markets
+values 
+ ('001', 'Araz', 'ST.102');
+  insert into markets
+values 
+ ('002', 'Mega', 'ST.103');
+   insert into markets
+values 
+ ('003', 'Rahat', 'ST.104');
+ select*from markets;
+
+ alter table markets modify (market_name NULL);
+ select*from user_constraints where table_name= upper('markets');
+ select initcap('mega')from user_constraints
+ 
+create table countries(
+name_ nchar(15),
+id_ number(3),
+type_ varchar2(5)
+);
+  alter table countries modify id_ constraint countries_pk primary key;
+   insert into countries
+values 
+     ('Tailand', '001', 'Asia');
+  insert into countries
+values 
+     ('Korea', '002', 'Asia');
+ select*from countries;
+ 
+  alter table countries
+  add capital nchar(15);
+  alter table countries
+  add constraint check_capital_city CHECK(capital='SEOUL');
+  
+  alter table countries rename constraint check_capital_city to check_cap;
+  alter table countries drop constraint check_cap;
+  
